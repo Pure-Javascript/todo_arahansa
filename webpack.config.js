@@ -1,39 +1,48 @@
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const path = require('path');
-const devMode = process.env.NODE_ENV !== 'production';
-
-const plugins = [
-
-
-];
-if (devMode) {
-  // only enable hot in development
-  plugins.push(new webpack.HotModuleReplacementPlugin());
-}
-
 module.exports = {
-  entry:{
-    home: ['./src/index.js', './style.css'],
-  },
-  devtool: 'inline-source-map',
-  devServer: {
-    contentBase: './dist',
-    hot: true,
+  mode: 'development',
+  entry: ['./src/index.js'],
+  output: {
+    path: '/dist',
+    filename: '[name].js',
+    publicPath: '/',
   },
   module: {
-    rules: [
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+    rules: [{
+      test: /\.jsx?$/,
+      loader: 'babel-loader',
+      options: {
+        presets: [
+          [
+            '@babel/preset-env', {
+            targets: { node: 'current' }, // 노드일 경우만
+            modules: 'commonjs',
+            useBuiltIns: 'usage'
+          }
+          ],
+          '@babel/preset-react', // 리액트를 쓴다면
+          '@babel/preset-typescript' // 타입스크립트를 쓴다면
+        ],
       },
-    ],
+      exclude: ['/node_modules'],
+    }],
   },
-  output: {
-    filename: 'main.js',
-    path: path.resolve(__dirname, 'dist'),
+  plugins: [
+    new webpack.LoaderOptionsPlugin({
+      minimize: true,
+    }),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production'), // 아래 EnvironmentPlugin처럼 할 수도 있습니다.
+    }),
+    new webpack.EnvironmentPlugin({ 'NODE_ENV': 'production' }), // 요즘은 DefinePlugin보다 이렇게 하는 추세입니다.
+  ],
+  optimization: {
+    minimize: false,
+    splitChunks: {},
+    concatenateModules: true,
   },
-  plugins: plugins
+  resolve: {
+    modules: ['node_modules'],
+    extensions: ['.js', '.json', '.jsx', '.css'],
+  },
 };
