@@ -33,6 +33,7 @@ gulp.task('browser-sync', function() {
 gulp.task('scripts', function () {
 
   gulp.src(srcPath + 'js/*.js')
+      .pipe(babel())
       .pipe(concat('common.js'))
       .pipe(rename({suffix: '.min'}))
       .pipe(uglify())
@@ -74,6 +75,7 @@ gulp.task('sass', function () {
 
 //Watch project
 gulp.task('watch', () => {
+  gulp.watch(srcPath + 'js/*.js', ['scripts']);
   gulp.watch([srcPath + 'scss/*.scss'], ['sass']);
   gulp.watch(srcPath + '*.html', ['html-copy']);
 });
