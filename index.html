@@ -9,16 +9,17 @@
 <section class="wrap-todo">
     <div id="wrap-form" class="header">
         <h2>My To Do List</h2>
-        <input type="text" id="myInput" placeholder="Title...">
+        <input type="text" id="myInput" placeholder="Title..." />
+        <input type="hidden" id="edit-id"/>
         <textarea id="todo-content" class="form-content" placeholder="Content..."></textarea>
         <div class="wrap-btn">
-            <button id="addTodo" class="addBtn">Add</button>
+            <button id="addTodo" class="btn-event">등록</button>
+            <button id="submit-edit" class="btn-event-edit">수정</button>
+            <button id="cancel-edit" class="btn-event-edit">취소</button>
         </div>
     </div>
 
-    <ul id="myUL">
-
-    </ul>
+    <ul id="todo-list"></ul>
 </section>
 
 <!-- build:js -->
@@ -26,3 +27,4 @@ Everything here will be replaced
 <!-- endbuild -->
 </body>
 </html>
+

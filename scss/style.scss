@@ -7,6 +7,7 @@
 ul {
   margin: 0;
   padding: 0;
+  list-style-type: none;
 }
 
 /* Style the list items */
@@ -56,6 +57,17 @@ ul li.checked::before {
   width: 7px;
 }
 
+button{
+  border: 0px;
+  outline:none;
+  cursor:pointer;
+}
+
+button:focus {
+  outline: -webkit-focus-ring-color auto 1px;
+}
+
+
 /* Style the close button */
 .close {
   position: absolute;
@@ -85,7 +97,7 @@ ul li.checked::before {
 }
 
 /* Style the input */
-input {
+.wrap-form input {
   margin: 0;
   border: none;
   border-radius: 0;
@@ -96,20 +108,8 @@ input {
 }
 
 /* Style the "Add" button */
-.addBtn {
-  padding: 10px;
-  width: 25%;
-  background: #d9d9d9;
-  color: #555;
-  float: left;
-  text-align: center;
-  font-size: 16px;
-  cursor: pointer;
-  transition: 0.3s;
-  border-radius: 0;
-}
 
-.addBtn:hover {
+.btn-event:hover {
   background-color: #bbb;
 }
 
@@ -131,13 +131,57 @@ input {
     width:100%;
 
     button{
-      outline:none;
-      border:0px;
-      margin: 0 auto;
+      margin: 5px auto 5px;
       float:initial;
       width:100%;
+      padding: 10px;
+      background: #d9d9d9;
+      color: #555;
+      text-align: center;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+      border-radius: 0;
+    }
+
+  }
+
+  .btn-event-edit{
+    display:none;
+  }
+}
+#wrap-form.edit{
+  .btn-event{
+    display:none;
+  }
+  .btn-event-edit{
+    display:block;
+  }
+}
+
+#todo-list{
+  .item-todo{
+
+    .todo-subject.checked{
+      text-decoration: line-through;
+    }
+
+    .content{
+      height: 0;
+      overflow: hidden;
+    }
+
+    .buttons {
+      display: inline-block;
+      float: right;
     }
   }
+  .item-todo.on{
+    .content{
+      height: auto;
+    }
+  }
+
 }
 
 
