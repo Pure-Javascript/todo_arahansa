@@ -47,7 +47,7 @@ gulp.task('scripts', function () {
 gulp.task('html-copy', function () {
 
   const commonCss =[
-    '/css/style.min.css',
+    'css/style.min.css',
   ];
 
   const commonJs = [
