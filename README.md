@@ -12,6 +12,7 @@
 
 # 참고 URL
 - https://www.w3schools.com/howto/howto_js_todolist.asp
+- https://developer.mozilla.org/en-US/docs/Web/API/Document/drag_event
 
 
 # Q&A
